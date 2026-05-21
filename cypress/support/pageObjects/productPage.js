@@ -2,20 +2,25 @@
 export class ProductPage {
 
     productPageElements = {
-       addToCart: "#add-to-cart-sauce-labs-backpack",
-       removefromCart: "#remove-sauce-labs-backpack",
-       shoppingCart: "[data-test=\"shopping-cart-link\"]",
+       addToCart: () => cy.get('#add-to-cart-sauce-labs-backpack'),
+       removefromCart: () => cy.get('#remove-sauce-labs-backpack'),
+       shoppingCart: () => cy.get('[data-test="shopping-cart-link"]'),
+       cartBadgeNumber: () => cy.get('.shopping_cart_badge'),
     }
 
     clickAddToCart() {
-        cy.get(this.productPageElements.addToCart).click();
+        this.productPageElements.addToCart().click();
     }
 
     verifyRemoveFromCart() {
-        cy.get(this.productPageElements.removeFromCart).should('be.visible');
+        this.productPageElements.removefromCart().should('be.visible');
     }
 
     existsShoppingCart() {
-        cy.get(this.productPageElements.shoppingCart).should('be.visible');
+        this.productPageElements.shoppingCart().should('be.visible');
+    }
+
+    verifyCartBadgeNumber(expectedNumber) {
+        this.productPageElements.cartBadgeNumber().should('have.text', expectedNumber);
     }
 }

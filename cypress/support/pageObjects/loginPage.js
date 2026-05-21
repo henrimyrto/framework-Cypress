@@ -7,6 +7,7 @@ export class LoginPage {
         emailInput: () => cy.get('#user-name'),
         passwordInput: () => cy.get('#password'),
         loginButton: () => cy.get('#login-button'),
+        errorMessage: () => cy.get('[data-test="error"]'),
 
         /* emailInput: '#user-name',
         passwordInput: '#password',
@@ -25,6 +26,11 @@ export class LoginPage {
         // cy.get(this.loginPageElements.loginButton).click();
         this.loginPageElements.loginButton().click();   
     }
+
+    errorMessageShouldBeVisible() {
+        this.loginPageElements.errorMessage().should('be.visible');
+    }
+
     login(email, password) {
         this.enterEmail(email);
         this.enterPassword(password);
