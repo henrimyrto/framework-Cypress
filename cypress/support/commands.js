@@ -23,3 +23,11 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+import { LoginPage } from "./pageObjects/loginPage";
+
+Cypress.Commands.add('loginForSauce', (email, password) => {
+    let loginPage = new LoginPage();
+    cy.visit('/');
+    loginPage.login(email, password);
+})

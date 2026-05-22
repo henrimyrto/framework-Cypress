@@ -5,14 +5,16 @@ import { ProductPage } from "../../support/pageObjects/productPage";
 
 describe('Products Tests', () => {
 
-    let loginPage= new LoginPage();
+    //let loginPage= new LoginPage();
     let productPage = new ProductPage();
 
     it('should add product to cart successfully', () => {
-        cy.visit("https://www.saucedemo.com/");
+        /* cy.visit("https://www.saucedemo.com/");
         loginPage.enterEmail('standard_user');
         loginPage.enterPassword('secret_sauce');
-        loginPage.clickLoginButton();   
+        loginPage.clickLoginButton();    */
+
+        cy.loginForSauce('standard_user', 'secret_sauce');
 
         productPage.clickAddToCart();
         productPage.verifyRemoveFromCart();

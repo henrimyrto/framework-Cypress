@@ -3,27 +3,30 @@ import { LoginPage } from "../../support/pageObjects/loginPage";
 
 import { ProductPage } from "../../support/pageObjects/productPage";
 
-beforeEach(() => {
+/* beforeEach(() => {
     cy.visit('https://www.saucedemo.com/');
-})
+}) */
 
 describe('Login Tests', () => {
 
     let loginPage= new LoginPage();
-    let productPage = new ProductPage();
+   let productPage = new ProductPage();
 
     it('should login successfully with valid credentials', () => {
-        loginPage.enterEmail('standard_user');
+       /*  loginPage.enterEmail('standard_user');
         loginPage.enterPassword('secret_sauce');
-        loginPage.clickLoginButton();
+        loginPage.clickLoginButton(); */
+
+        cy.loginForSauce('standard_user', 'secret_sauce');
 
         productPage.existsShoppingCart();
     })
 
      it('should not login successfully with invalid credentials', () => {
-        loginPage.enterEmail('standard_user');
-        loginPage.enterPassword('wrong_password');
-        loginPage.clickLoginButton();
+        /*  loginPage.enterEmail('standard_user');
+            loginPage.enterPassword('wrong_password');
+            loginPage.clickLoginButton(); */
+        cy.loginForSauce('standard_user', 'wrong_password');
         loginPage.errorMessageShouldBeVisible();
 
         
